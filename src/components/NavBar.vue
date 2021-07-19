@@ -3,7 +3,7 @@
         <v-app-bar-nav-icon @click="toggleDrawer"></v-app-bar-nav-icon>
         <v-toolbar-title>做题记录</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn icon href="https://github.com/renbaoshuo/OI-record" target="_blank">
+        <v-btn icon href="https://github.com/renbaoshuo/OI-records" target="_blank">
             <v-icon>mdi-github</v-icon>
         </v-btn>
     </v-app-bar>

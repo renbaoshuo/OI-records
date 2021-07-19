@@ -14,7 +14,7 @@
             <v-progress-circular indeterminate size="24"></v-progress-circular>&nbsp;&nbsp;加载中...
         </div>
         <div v-if="!loading">
-            <v-simple-table>
+            <v-simple-table class="my-5">
                 <template v-slot:default>
                     <thead>
                         <tr>

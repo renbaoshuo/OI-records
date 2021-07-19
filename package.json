@@ -49,5 +49,6 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "license": "GPL-3.0"
 }

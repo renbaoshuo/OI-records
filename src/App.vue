@@ -6,6 +6,7 @@
             <v-container>
                 <router-view :key="$route.fullPath" />
             </v-container>
+            <Footer />
         </v-main>
     </v-app>
 </template>
@@ -13,12 +14,14 @@
 <script>
 import NavBar from '@/components/NavBar';
 import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer.vue';
 
 export default {
     name: 'App',
     components: {
         NavBar,
         Navigation,
+        Footer,
     },
     data: () => ({ drawer: null }),
     mounted() {
@@ -28,3 +31,12 @@ export default {
     },
 };
 </script>
+
+<style>
+.v-main__wrap {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+</style>

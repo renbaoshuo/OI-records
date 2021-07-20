@@ -30,20 +30,6 @@
                 </v-list-item-content>
             </v-list-item>
         </v-list>
-        <template v-slot:append>
-            <v-divider />
-            <v-footer>
-                <span class="font-weight-light">OI Records</span>
-                <v-spacer></v-spacer>
-                <v-btn icon @click="$vuetify.theme.dark = !$vuetify.theme.dark">
-                    <v-icon>{{ $vuetify.theme.dark ? 'mdi-brightness-7' : 'mdi-brightness-4' }}</v-icon>
-                </v-btn>
-                <br />
-                <span class="font-weight-light"
-                    >Made With ❤ By&nbsp;<a style="text-decoration: none;" href="https://baoshuo.ren">Baoshuo</a></span
-                >
-            </v-footer>
-        </template>
     </v-navigation-drawer>
 </template>
 

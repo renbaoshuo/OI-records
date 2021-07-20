@@ -60,7 +60,7 @@
         <template>
             <div class="text-center">
                 <v-pagination
-                    :value="page"
+                    v-model="page"
                     :length="pages_length"
                     :total-visible="12"
                     @input="onPageChange()"

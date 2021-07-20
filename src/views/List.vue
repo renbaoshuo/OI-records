@@ -31,7 +31,9 @@
                     </thead>
                     <tbody>
                         <tr v-for="item in commits" :key="item.name">
-                            {{ void(item.commit_message = item.commit.message.split('\n')) }}
+                            {{
+                                void (item.commit_message = item.commit.message.split('\n'))
+                            }}
                             <td>{{ item.commit_message[0] }}</td>
                             <td class="text-center">{{ item.commit.author.date | formatDate }}</td>
                             <td class="text-center">
@@ -45,7 +47,18 @@
                                 </v-tooltip>
                                 <v-tooltip bottom v-if="item.commit_message[2]">
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-btn icon v-bind="attrs" v-on="on" :href="item.commit_message[2].replace(/^R([0-9]{1,8})(.*)?/g, 'https://www.luogu.com.cn/record/$1')" target="_blank">
+                                        <v-btn
+                                            icon
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            :href="
+                                                item.commit_message[2].replace(
+                                                    /^R([0-9]{1,8})(.*)?/g,
+                                                    'https://www.luogu.com.cn/record/$1'
+                                                )
+                                            "
+                                            target="_blank"
+                                        >
                                             <v-icon>mdi-poll</v-icon>
                                         </v-btn>
                                     </template>

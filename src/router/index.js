@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import List from '@/views/List.vue';
+import NotFound from '@/views/404.vue';
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,11 @@ const routes = [
         name: '做题记录',
         component: List,
     },
+    {
+        path: '/404',
+        name: '页面未找到',
+        component: NotFound,
+    }
 ];
 
 const router = new VueRouter({

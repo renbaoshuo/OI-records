@@ -4,7 +4,7 @@
         <Navigation />
         <v-main>
             <v-container>
-                <router-view :key="$route.fullPath" />
+                <router-view />
             </v-container>
             <Footer />
         </v-main>

@@ -99,11 +99,11 @@ export default {
     }),
     watch: {
         $route() {
-            this.mounted();
+            this.loading = true;
+            this.init();
         },
     },
     mounted() {
-        this.page = Number(this.$route.params.id);
         this.$ajax
             .get('https://github-api.rbs.workers.dev/repos/renbaoshuo/OI-codes/commits?per_page=1')
             .then((response) => {
@@ -114,19 +114,7 @@ export default {
                     .then((response) => {
                         this.total_commits = response.data.total_commits + 1;
                         this.pages_length = Math.ceil(this.total_commits / 20);
-                        this.loading = true;
-                        this.$ajax
-                            .get(
-                                `https://github-api.rbs.workers.dev/repos/renbaoshuo/OI-codes/commits?page=${this.page}&per_page=20`
-                            )
-                            .then((response) => {
-                                this.commits = response.data;
-                                this.loading = false;
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                                this.$router.push('/404');
-                            });
+                        this.init();
                     })
                     .catch((error) => {
                         console.log(error);
@@ -137,6 +125,23 @@ export default {
                 console.log(error);
                 this.$router.push('/404');
             });
+    },
+    methods: {
+        init() {
+            this.page = Number(this.$route.params.id);
+            this.$ajax
+                .get(
+                    `https://github-api.rbs.workers.dev/repos/renbaoshuo/OI-codes/commits?page=${this.page}&per_page=20`
+                )
+                .then((response) => {
+                    this.commits = response.data;
+                    this.loading = false;
+                })
+                .catch((error) => {
+                    console.log(error);
+                    this.$router.push('/404');
+                });
+        },
     },
 };
 </script>

@@ -105,11 +105,11 @@ export default {
     },
     mounted() {
         this.$ajax
-            .get('https://github-api.rbs.workers.dev/repos/renbaoshuo/OI-codes/commits?per_page=1')
+            .get('https://api.github.com/repos/renbaoshuo/OI-codes/commits?per_page=1')
             .then((response) => {
                 this.$ajax
                     .get(
-                        `https://github-api.rbs.workers.dev/repos/renbaoshuo/OI-codes/compare/50bd54f...${response.data[0].sha}`
+                        `https://api.github.com/repos/renbaoshuo/OI-codes/compare/50bd54f...${response.data[0].sha}`
                     )
                     .then((response) => {
                         this.total_commits = response.data.total_commits + 1;
@@ -131,7 +131,7 @@ export default {
             this.page = Number(this.$route.params.id);
             this.$ajax
                 .get(
-                    `https://github-api.rbs.workers.dev/repos/renbaoshuo/OI-codes/commits?page=${this.page}&per_page=20`
+                    `https://api.github.com/repos/renbaoshuo/OI-codes/commits?page=${this.page}&per_page=20`
                 )
                 .then((response) => {
                     this.commits = response.data;

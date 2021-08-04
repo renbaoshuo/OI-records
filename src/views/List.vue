@@ -45,20 +45,15 @@
                                     </template>
                                     <span>View on GitHub</span>
                                 </v-tooltip>
-                                <v-tooltip bottom v-if="item.commit_message[2]">
+                                {{
+                                    void (item.record_url = item.commit_message[2].replace(
+                                        /^R([0-9]{1,8})(.*)?/g,
+                                        'https://www.luogu.com.cn/record/$1'
+                                    ))
+                                }}
+                                <v-tooltip bottom v-if="is_url(item.record_url)">
                                     <template v-slot:activator="{ on, attrs }">
-                                        <v-btn
-                                            icon
-                                            v-bind="attrs"
-                                            v-on="on"
-                                            :href="
-                                                item.commit_message[2].replace(
-                                                    /^R([0-9]{1,8})(.*)?/g,
-                                                    'https://www.luogu.com.cn/record/$1'
-                                                )
-                                            "
-                                            target="_blank"
-                                        >
+                                        <v-btn icon v-bind="attrs" v-on="on" :href="item.record_url" target="_blank">
                                             <v-icon>mdi-poll</v-icon>
                                         </v-btn>
                                     </template>
@@ -108,9 +103,7 @@ export default {
             .get('https://api.github.com/repos/renbaoshuo/OI-codes/commits?per_page=1')
             .then((response) => {
                 this.$ajax
-                    .get(
-                        `https://api.github.com/repos/renbaoshuo/OI-codes/compare/50bd54f...${response.data[0].sha}`
-                    )
+                    .get(`https://api.github.com/repos/renbaoshuo/OI-codes/compare/50bd54f...${response.data[0].sha}`)
                     .then((response) => {
                         this.total_commits = response.data.total_commits + 1;
                         this.pages_length = Math.ceil(this.total_commits / 20);
@@ -130,9 +123,7 @@ export default {
         init() {
             this.page = Number(this.$route.params.id);
             this.$ajax
-                .get(
-                    `https://api.github.com/repos/renbaoshuo/OI-codes/commits?page=${this.page}&per_page=20`
-                )
+                .get(`https://api.github.com/repos/renbaoshuo/OI-codes/commits?page=${this.page}&per_page=20`)
                 .then((response) => {
                     this.commits = response.data;
                     this.loading = false;
@@ -142,6 +133,7 @@ export default {
                     this.$router.push('/404');
                 });
         },
+        is_url: require('is-url'),
     },
 };
 </script>

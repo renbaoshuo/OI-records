@@ -45,20 +45,28 @@
                                     </template>
                                     <span>View on GitHub</span>
                                 </v-tooltip>
-                                {{
-                                    void (item.record_url = item.commit_message[2].replace(
-                                        /^R([0-9]{1,8})(.*)?/g,
-                                        'https://www.luogu.com.cn/record/$1'
-                                    ))
-                                }}
-                                <v-tooltip bottom v-if="is_url(item.record_url)">
-                                    <template v-slot:activator="{ on, attrs }">
-                                        <v-btn icon v-bind="attrs" v-on="on" :href="item.record_url" target="_blank">
-                                            <v-icon>mdi-poll</v-icon>
-                                        </v-btn>
-                                    </template>
-                                    <span>View Record</span>
-                                </v-tooltip>
+                                <div v-if="item.commit_message.length > 2">
+                                    {{
+                                        void (item.record_url = item.commit_message[2].replace(
+                                            /^R([0-9]{1,8})(.*)?/g,
+                                            'https://www.luogu.com.cn/record/$1'
+                                        ))
+                                    }}
+                                    <v-tooltip bottom v-if="is_url(item.record_url)">
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-btn
+                                                icon
+                                                v-bind="attrs"
+                                                v-on="on"
+                                                :href="item.record_url"
+                                                target="_blank"
+                                            >
+                                                <v-icon>mdi-poll</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>View Record</span>
+                                    </v-tooltip>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

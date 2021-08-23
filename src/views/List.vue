@@ -45,7 +45,7 @@
                                     </template>
                                     <span>View on GitHub</span>
                                 </v-tooltip>
-                                <div v-if="item.commit_message.length > 2">
+                                <span v-if="item.commit_message.length > 2">
                                     {{
                                         void (item.record_url = item.commit_message[2].replace(
                                             /^R([0-9]{1,8})(.*)?/g,
@@ -66,7 +66,7 @@
                                         </template>
                                         <span>View Record</span>
                                     </v-tooltip>
-                                </div>
+                                </span>
                             </td>
                         </tr>
                     </tbody>
